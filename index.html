@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ปุ่มเต็มหน้าจอ</title>
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1270504197816598');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1270504197816598&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Kanit', 'Prompt', sans-serif;
+            background: #000000;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background animation */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 0, 150, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 150, 255, 0.05) 0%, transparent 50%);
+            animation: backgroundMove 10s ease-in-out infinite alternate;
+            z-index: -1;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header h1 {
+            color: #fff;
+            font-size: clamp(24px, 6vw, 32px);
+            font-weight: bold;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #b3b3b3;
+            font-size: clamp(14px, 4vw, 18px);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 400px;
+            gap: 15px;
+        }
+
+        .red-button {
+            background: linear-gradient(135deg, #d32f2f 0%, #9e1f1f 100%);
+            color: #fff;
+            padding: 18px 20px;
+            width: 100%;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(16px, 4.5vw, 20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 8px 16px rgba(158, 31, 31, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .red-button:nth-child(1) { animation-delay: 0.1s; }
+        .red-button:nth-child(2) { animation-delay: 0.2s; }
+        .red-button:nth-child(3) { animation-delay: 0.3s; }
+        .red-button:nth-child(4) { animation-delay: 0.4s; }
+        .red-button:nth-child(5) { animation-delay: 0.5s; }
+        .red-button:nth-child(6) { animation-delay: 0.6s; }
+        .red-button:nth-child(7) { animation-delay: 0.7s; }
+
+        .red-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .red-button:hover::before {
+            left: 100%;
+        }
+
+        .red-button:hover {
+            background: linear-gradient(135deg, #f44336 0%, #c62828 100%);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 
+                0 12px 24px rgba(158, 31, 31, 0.4),
+                0 8px 16px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .red-button:active {
+            transform: translateY(-2px) scale(1.01);
+            transition: all 0.1s;
+        }
+
+        /* Responsive design */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+                gap: 15px;
+            }
+            
+            .red-button {
+                padding: 16px 18px;
+                border-radius: 10px;
+            }
+            
+            .header {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .red-button {
+                padding: 14px 16px;
+                font-size: 16px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Pulse effect for buttons */
+        .red-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .red-button:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Loading state for better UX */
+        .red-button:focus {
+            outline: none;
+            box-shadow: 
+                0 8px 16px rgba(158, 31, 31, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.2),
+                0 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+
+        .green-button {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            color: #fff;
+            padding: 18px 20px;
+            width: 100%;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(16px, 4.5vw, 20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 8px 16px rgba(27, 94, 32, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+            animation-delay: 0.6s;
+        }
+
+        .green-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .green-button:hover::before {
+            left: 100%;
+        }
+
+        .green-button:hover {
+            background: linear-gradient(135deg, #43a047 0%, #2e7d32 100%);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 
+                0 12px 24px rgba(27, 94, 32, 0.4),
+                0 8px 16px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .green-button:active {
+            transform: translateY(-2px) scale(1.01);
+            transition: all 0.1s;
+        }
+
+        .green-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .green-button:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .green-button:focus {
+            outline: none;
+            box-shadow: 
+                0 8px 16px rgba(27, 94, 32, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.2),
+                0 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎰 ทีมงานไหล่โดนจอ</h1>
+            <p>กลุ่มนำเล่นยอดนิยมอันดับ 1 ในปะเทศไทย</p>
+        </div>
+        
+        <div class="button-container">
+            <a href="https://jingjai.casino/af/gumalaw" target="_blank" class="red-button">
+                🎯 สมัครเว็บม่วง จริงใจเบ็ท
+            </a>
+            <a href="https://rangsitclub.com/th" target="_blank" class="red-button">
+                🏆 สมัครเว็บรังสิตเบ็ท
+            </a>
+            <a href="https://app.123fev.com/?openExternalBrowser=1" target="_blank" class="red-button">
+                🔥 123FEVER
+            </a>
+            <a href="https://lin.ee/F74nph2" target="_blank" class="red-button">
+                👥 สนใจเข้ากลุ่มนำเล่น
+            </a>
+            <a href="https://lin.ee/F74nph2" target="_blank" class="red-button">
+                ⚽ สนใจเข้ากลุ่มบอล
+            </a>
+            <a href="https://kick.com/gotothesun789" target="_blank" class="green-button">
+                📺 ช่องทางสตรีม KICK
+            </a>
+        </div>
+    </div>
+</body>
+</html>
